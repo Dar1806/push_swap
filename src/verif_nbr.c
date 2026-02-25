@@ -1,45 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verif.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/25 16:50:48 by nmeunier         ###   ########.fr       */
+/*   Created: 2026/02/25 16:41:31 by nmeunier          #+#    #+#             */
+/*   Updated: 2026/02/25 17:53:30 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	verif_number(char *tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
-	if (tab[0] == '\0')
-		return (-1);
 	while (tab[i])
 	{
-		if (tab[i] == '-' || tab[i] == '+')
-		{
-			if (tab[i + 1] >= '0' && tab[i + 1] <= '9'
-				&& (i == 0 || tab[i - 1] == ' '
-					|| tab[i - 1] == '\t'))
-				i++;
-			else
-				return (-1);
-		}
-		if ((tab[i] >= '0' && tab[i] <= '9')
-			|| tab[i] == ' ' || tab[i] == '\t')
-			i++;
-		else
-			return (-1);
+		free(tab[i]);
+		i++;
 	}
-	return (0);
+	free(tab);
 }
 
-n_list	*create_node(char *str)
+void	free_list(n_list *head)
+{
+    n_list	*temp;
+
+    while (head)
+    {
+        temp = head->next;
+        free(head);
+        head = temp;
+    }
+}
+
+n_list	*create_node(char *str, n_list *head)
 {
 	n_list	*node;
 	int		valid;
@@ -49,7 +47,11 @@ n_list	*create_node(char *str)
 		return (NULL);
 	valid = verif_number(str);
 	if (valid == -1)
+	{
+		free(node);
+		free_list(head);
 		return (NULL);
+	}
 	valid = ft_atoi(str);
 	node->content = valid;
 	node->next = NULL;
@@ -67,7 +69,7 @@ n_list	*create_mult_arg(char **tab)
 	head = NULL;
 	while (tab[i])
 	{
-		new_node = create_node(tab[i]);
+		new_node = create_node(tab[i], head);
 		if (!new_node)
 			return (NULL);
 		if (head == NULL)
@@ -91,22 +93,4 @@ n_list	*create_one_arg(char *tab)
 	head = create_mult_arg(split);
 	free_tab(split);
 	return (head);
-}
-
-int	parsing(char **tab, int ac)
-{
-	n_list	*head;
-
-	if (ac == 2)
-		head = create_one_arg(tab[1]);
-	else
-		head = create_mult_arg(tab + 1);
-	if (!head)
-		return (-1);
-	while (head)
-	{
-		printf("%d\n", head->content);
-		head = head->next;
-	}
-	return (0);
 }

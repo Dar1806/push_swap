@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:55:02 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/25 16:40:29 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/02/25 18:13:20 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 		write(1, "Error\n", 6);
 		return (0);
 	}
-	if (parsing(av, ac) == -1)
+	if (!parsing(av, ac))
 	{
 		write(1, "Error\n", 6);
 		return (0);

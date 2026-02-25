@@ -6,7 +6,7 @@
 #    By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 13:38:53 by nmeunier          #+#    #+#              #
-#    Updated: 2026/02/25 16:43:08 by nmeunier         ###   ########.fr        #
+#    Updated: 2026/02/25 18:12:10 by nmeunier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT = libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_putstr_fd.c libft/ft
 		libft/ft_lstiter.c libft/ft_lstlast.c libft/ft_lstmap.c \
 		libft/ft_substr.c libft/ft_tolower.c libft/ft_toupper.c
 
-SRCS = $(LIBFT) src/main.c src/verif.c src/free.c
+SRCS = $(LIBFT) src/main.c src/verif_nbr.c src/parsing.c
 
 CC = cc
 RM = rm -f
