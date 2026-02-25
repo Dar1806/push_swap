@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 13:55:02 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/25 16:40:29 by nmeunier         ###   ########.fr       */
+/*   Created: 2026/02/25 16:41:31 by nmeunier          #+#    #+#             */
+/*   Updated: 2026/02/25 16:44:38 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int ac, char **av)
+void	free_tab(char **tab)
 {
-	if (ac <= 1)
+	int	i;
+
+	i = 0;
+	while (tab[i])
 	{
-		write(1, "Error\n", 6);
-		return (0);
+		free(tab[i]);
+		i++;
 	}
-	if (parsing(av, ac) == -1)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
+	free(tab);
 }

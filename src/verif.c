@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/24 17:03:24 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/02/25 16:50:48 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,74 @@ int	verif_number(char *tab)
 	return (0);
 }
 
-int	double_number(char *tab)
+n_list	*create_node(char *str)
 {
-	int	i;
-	int	j;
+	n_list	*node;
+	int		valid;
+
+	node = malloc(sizeof(n_list));
+	if (!node)
+		return (NULL);
+	valid = verif_number(str);
+	if (valid == -1)
+		return (NULL);
+	valid = ft_atoi(str);
+	node->content = valid;
+	node->next = NULL;
+	return (node);
+}
+
+n_list	*create_mult_arg(char **tab)
+{
+	int		i;
+	n_list	*head;
+	n_list	*new_node;
+	n_list	*current;
 
 	i = 0;
+	head = NULL;
 	while (tab[i])
 	{
-		if (tab[i] == '-' || tab[i] == '+')
-			i++;
-		while (tab[i] >= '0' && tab[i] <= '9')
-			i++;
-		j = i;
+		new_node = create_node(tab[i]);
+		if (!new_node)
+			return (NULL);
+		if (head == NULL)
+			head = new_node;
+		else
+			current->next = new_node;
+		current = new_node;
+		i++;
 	}
-	return (0);
+	return (head);
+}
+
+n_list	*create_one_arg(char *tab)
+{
+	char	**split;
+	n_list	*head;
+
+	split = ft_split(tab, ' ');
+	if (!split)
+		return (NULL);
+	head = create_mult_arg(split);
+	free_tab(split);
+	return (head);
 }
 
 int	parsing(char **tab, int ac)
 {
-	int	i;
+	n_list	*head;
 
-	i = 1;
-	while (tab[i])
-	{
-		if (verif_number(tab[i]) == -1)
-			return (-1);
-		i++;
-	}
-	i = 1;
 	if (ac == 2)
+		head = create_one_arg(tab[1]);
+	else
+		head = create_mult_arg(tab + 1);
+	if (!head)
+		return (-1);
+	while (head)
 	{
-		if (double_number(tab[1]) == -1)
-			return (-1);
+		printf("%d\n", head->content);
+		head = head->next;
 	}
 	return (0);
 }
