@@ -6,71 +6,105 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/25 18:13:46 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:22:15 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	verif_number(char *tab)
+t_stack	*create_node(char *str, t_stack *stack_a)
 {
-	int	i;
+	t_stack	*node;
+	int		valid;
+
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	valid = verif_number(str);
+	if (valid == -1)
+	{
+		free(node);
+		free_list(stack_a);
+		return (NULL);
+	}
+	valid = ft_atoi(str);
+	node->content = valid;
+	node->next = NULL;
+	return (node);
+}
+
+t_stack	*create_mult_arg(char **tab)
+{
+	int		i;
+	t_stack	*stack_a;
+	t_stack	*new_node;
+	t_stack	*current;
 
 	i = 0;
-	if (tab[0] == '\0')
-		return (-1);
+	stack_a = NULL;
 	while (tab[i])
 	{
-		if (tab[i] == '-' || tab[i] == '+')
-		{
-			if (tab[i + 1] >= '0' && tab[i + 1] <= '9'
-				&& (i == 0 || tab[i - 1] == ' '
-					|| tab[i - 1] == '\t'))
-				i++;
-			else
-				return (-1);
-		}
-		if ((tab[i] >= '0' && tab[i] <= '9')
-			|| tab[i] == ' ' || tab[i] == '\t')
-			i++;
+		new_node = create_node(tab[i], stack_a);
+		if (!new_node)
+			return (NULL);
+		if (stack_a == NULL)
+			stack_a = new_node;
 		else
-			return (-1);
+			current->next = new_node;
+		current = new_node;
+		stack_a->size++;
+		i++;
 	}
-	return (0);
+	return (stack_a);
 }
 
-int	is_valid(n_list *head)
+t_stack	*create_one_arg(char *tab)
 {
-	n_list	*same;
+	char	**split;
+	t_stack	*stack_a;
 
-	while (head)
+	split = ft_split(tab, ' ');
+	if (!split)
+		return (NULL);
+	stack_a = create_mult_arg(split);
+	free_tab(split);
+	return (stack_a);
+}
+
+int count_words(char *str, char sep)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
 	{
-		same = head->next;
-		while (same)
+		while (str[i] && str[i] == sep)
+			i++;
+		if (str[i] && str[i] != sep)
 		{
-			if (head->content == same->content)
-				return (-1);
-			same = same->next;
+			count++;
+			while (str[i] && str[i] != sep)
+				i++;
 		}
-		head = head->next;
 	}
-	return (0);
+	return (count);
 }
 
-n_list	*parsing(char **tab, int ac)
+t_stack	*parsing(char **tab, int ac)
 {
-	n_list	*head;
-
+	t_stack	*stack_a;
 	if (ac == 2)
-		head = create_one_arg(tab[1]);
+		stack_a = create_one_arg(tab[1]);
 	else
-		head = create_mult_arg(tab + 1);
-	if (!head)
+		stack_a = create_mult_arg(tab + 1);
+	if (!stack_a)
 		return (NULL);
-	if (is_valid(head) == -1)
+	if (is_valid(stack_a) == -1)
 	{
-		free_list(head);
+		free_list(stack_a);
 		return (NULL);
 	}
-	return (head);
+	return (stack_a);
 }

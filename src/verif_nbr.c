@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   verif_nbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:41:31 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/25 17:53:30 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:26:30 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,72 +25,61 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-void	free_list(n_list *head)
+void	free_list(t_stack *stack)
 {
-    n_list	*temp;
+	t_stack	*temp;
 
-    while (head)
-    {
-        temp = head->next;
-        free(head);
-        head = temp;
-    }
-}
-
-n_list	*create_node(char *str, n_list *head)
-{
-	n_list	*node;
-	int		valid;
-
-	node = malloc(sizeof(n_list));
-	if (!node)
-		return (NULL);
-	valid = verif_number(str);
-	if (valid == -1)
+	while (stack)
 	{
-		free(node);
-		free_list(head);
-		return (NULL);
+		temp = stack->next;
+		free(stack);
+		stack = temp;
 	}
-	valid = ft_atoi(str);
-	node->content = valid;
-	node->next = NULL;
-	return (node);
 }
 
-n_list	*create_mult_arg(char **tab)
+int	verif_number(char *tab)
 {
-	int		i;
-	n_list	*head;
-	n_list	*new_node;
-	n_list	*current;
+	int	i;
 
 	i = 0;
-	head = NULL;
+	if (tab[0] == '\0')
+		return (-1);
 	while (tab[i])
 	{
-		new_node = create_node(tab[i], head);
-		if (!new_node)
-			return (NULL);
-		if (head == NULL)
-			head = new_node;
+		if (tab[i] == '-' || tab[i] == '+')
+		{
+			if (tab[i + 1] >= '0' && tab[i + 1] <= '9'
+				&& (i == 0 || tab[i - 1] == ' '
+					|| tab[i - 1] == '\t'))
+				i++;
+			else
+				return (-1);
+		}
+		if ((tab[i] >= '0' && tab[i] <= '9')
+			|| tab[i] == ' ' || tab[i] == '\t')
+			i++;
 		else
-			current->next = new_node;
-		current = new_node;
-		i++;
+			return (-1);
 	}
-	return (head);
+	return (0);
 }
 
-n_list	*create_one_arg(char *tab)
+int	is_valid(t_stack *nrb1)
 {
-	char	**split;
-	n_list	*head;
+	t_stack	*current;
+	t_stack	*nbr2;
 
-	split = ft_split(tab, ' ');
-	if (!split)
-		return (NULL);
-	head = create_mult_arg(split);
-	free_tab(split);
-	return (head);
+	current = nrb1;
+	while (current)
+	{
+		nbr2 = current->next;
+		while (nbr2)
+		{
+			if (current->content == nbr2->content)
+				return (-1);
+			nbr2 = nbr2->next;
+		}
+		current = current->next;
+	}
+	return (0);
 }
