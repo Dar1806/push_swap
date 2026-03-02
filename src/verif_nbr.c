@@ -6,36 +6,11 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 16:41:31 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/26 18:26:30 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:22:37 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-void	free_list(t_stack *stack)
-{
-	t_stack	*temp;
-
-	while (stack)
-	{
-		temp = stack->next;
-		free(stack);
-		stack = temp;
-	}
-}
 
 int	verif_number(char *tab)
 {

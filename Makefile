@@ -6,7 +6,7 @@
 #    By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 13:38:53 by nmeunier          #+#    #+#              #
-#    Updated: 2026/02/26 19:08:02 by nmeunier         ###   ########.fr        #
+#    Updated: 2026/03/02 17:28:44 by nmeunier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,10 +56,14 @@ LIBFT = libft/ft_lstadd_front.c \
 
 SRCS = $(LIBFT) src/verif_nbr.c \
 				src/sort_stack.c \
+				src/sort_small.c \
 				src/parsing.c \
+				src/radix.c \
 				src/main.c \
 				src/swap.c \
-				src/radix.c
+				src/free.c \
+				src/push.c \
+				src/rotate.c
 
 CC = cc
 RM = rm -f

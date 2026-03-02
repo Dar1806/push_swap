@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 13:55:02 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/02 17:48:00 by nmeunier         ###   ########.fr       */
+/*   Created: 2026/03/02 16:22:22 by nmeunier          #+#    #+#             */
+/*   Updated: 2026/03/02 16:22:52 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int ac, char **av)
+void	free_tab(char **tab)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_stack	*current;
+	int	i;
 
-	if (ac <= 1)
-		return (0);
-	stack_b = NULL;
-	stack_a = parsing(av, ac);
-	if (!stack_a)
+	i = 0;
+	while (tab[i])
 	{
-		write(1, "Error\n", 6);
-		return (0);
+		free(tab[i]);
+		i++;
 	}
-	stack_b = NULL;
-	radix_index(stack_a);
-	sort_stack(&stack_a, &stack_b);
-	current = stack_a;
-	while (current)
+	free(tab);
+}
+
+void	free_list(t_stack *stack)
+{
+	t_stack	*temp;
+
+	while (stack)
 	{
-		printf("content: %d\n", current->content);
-		current = current->next;
+		temp = stack->next;
+		free(stack);
+		stack = temp;
 	}
 }

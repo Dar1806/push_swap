@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/02/26 18:22:15 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:39:50 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,6 @@ t_stack	*create_one_arg(char *tab)
 	return (stack_a);
 }
 
-int count_words(char *str, char sep)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		while (str[i] && str[i] == sep)
-			i++;
-		if (str[i] && str[i] != sep)
-		{
-			count++;
-			while (str[i] && str[i] != sep)
-				i++;
-		}
-	}
-	return (count);
-}
-
 t_stack	*parsing(char **tab, int ac)
 {
 	t_stack	*stack_a;
@@ -106,5 +85,6 @@ t_stack	*parsing(char **tab, int ac)
 		free_list(stack_a);
 		return (NULL);
 	}
+	
 	return (stack_a);
 }
