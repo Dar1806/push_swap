@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:55:02 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/02 17:48:00 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/02 18:54:44 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,23 @@ int	main(int ac, char **av)
 	}
 	stack_b = NULL;
 	radix_index(stack_a);
+	current = stack_a;
+	while (current)
+	{
+		printf("index: %d\n", current->index);
+		current = current->next;
+	}
 	sort_stack(&stack_a, &stack_b);
 	current = stack_a;
 	while (current)
 	{
 		printf("content: %d\n", current->content);
+		current = current->next;
+	}
+	current = stack_a;
+	while (current)
+	{
+		printf("index: %d\n", current->index);
 		current = current->next;
 	}
 }
