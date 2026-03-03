@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:10:37 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 10:11:37 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:36:24 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 int	is_sorted(t_stack *stack_a)
 {
-	t_stack	*current;
-
-	current = stack_a;
-	while (current && current->next)
+	while (stack_a && stack_a->next)
 	{
-		if (current->content > current->next->content)
+		if (stack_a->content > stack_a->next->content)
 			return (0);
-		current = current->next;
+		stack_a = stack_a->next;
 	}
 	return (1);
 }

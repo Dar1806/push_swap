@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 11:04:42 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:27:11 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,25 @@
 t_stack	*create_node(char *str, t_stack *stack_a)
 {
 	t_stack	*node;
-	int		valid;
+	long	nbr;
 
 	node = malloc(sizeof(t_stack));
 	if (!node)
 		return (NULL);
-	valid = verif_number(str);
-	if (valid == -1)
+	if (verif_number(str) == -1)
 	{
 		free(node);
 		free_list(stack_a);
 		return (NULL);
 	}
-	valid = ft_atoi(str);
-	node->content = valid;
+	nbr = ft_atoi_long(str);
+	if (nbr > 2147483647 || nbr < -2147483648L)
+	{
+		free(node);
+		free_list(stack_a);
+		return (NULL);
+	}
+	node->content = (int)nbr;
 	node->next = NULL;
 	return (node);
 }

@@ -6,11 +6,37 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:54:47 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 15:45:28 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:16:57 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	chose_side(t_stack **stack_a, int index)
+{
+	int		size;
+	int		position;
+	t_stack	*tmp;
+
+	size = stack_size(*stack_a);
+	position = 0;
+	tmp = *stack_a;
+	while (tmp && tmp->index != index)
+	{
+		position++;
+		tmp = tmp->next;
+	}
+	if (position <= size / 2)
+	{
+		while ((*stack_a)->index != index)
+			ra(stack_a);
+	}
+	else
+	{
+		while ((*stack_a)->index != index)
+			rra(stack_a);
+	}
+}
 
 void	sort_three(t_stack **stack_a)
 {
@@ -41,8 +67,7 @@ void	sort_three(t_stack **stack_a)
 
 void	sort_four(t_stack **stack_a, t_stack **stack_b)
 {
-	while (*stack_a && (*stack_a)->index != 1)
-		ra(stack_a);
+	chose_side(stack_a, 0);
 	pb(stack_a, stack_b);
 	sort_three(stack_a);
 	pa(stack_a, stack_b);
@@ -50,11 +75,9 @@ void	sort_four(t_stack **stack_a, t_stack **stack_b)
 
 void	sort_five(t_stack **stack_a, t_stack **stack_b)
 {
-	while (*stack_a && (*stack_a)->index != 1)
-		ra(stack_a);
+	chose_side(stack_a, 0);
 	pb(stack_a, stack_b);
-	while (*stack_a && (*stack_a)->index != 2)
-		ra(stack_a);
+	chose_side(stack_a, 1);
 	pb(stack_a, stack_b);
 	sort_three(stack_a);
 	pa(stack_a, stack_b);

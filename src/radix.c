@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 19:04:12 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 15:45:20 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/03 20:12:49 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	indexer(t_stack **stack_a)
 	current = *stack_a;
 	while (current)
 	{
-		current->index = 1;
+		current->index = 0;
 		compare = *stack_a;
 		while (compare)
 		{
@@ -47,6 +47,8 @@ void	radix(t_stack **stack_a, t_stack **stack_b)
 		max_bits++;
 	while (++bits < max_bits)
 	{
+		if (is_sorted(*stack_a))
+			return ;
 		i = -1;
 		while (++i < size)
 		{
