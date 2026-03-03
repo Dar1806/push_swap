@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/02 16:39:50 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/03 11:04:42 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_stack	*create_mult_arg(char **tab)
 		else
 			current->next = new_node;
 		current = new_node;
-		stack_a->size++;
 		i++;
 	}
 	return (stack_a);

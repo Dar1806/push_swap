@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:10:37 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/02 18:01:54 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/03 10:11:37 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	if (stack_size(*stack_a) <= 5)
 		sort_small(stack_a, stack_b);
-/* 	else
-		sort_large(stack_a, stack_b); */
+	else
+		radix(stack_a, stack_b);
 }

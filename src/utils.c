@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 13:55:02 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 15:43:41 by nmeunier         ###   ########.fr       */
+/*   Created: 2026/03/03 11:04:48 by nmeunier          #+#    #+#             */
+/*   Updated: 2026/03/03 11:08:36 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int ac, char **av)
+int	get_size(t_stack **stack)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack *temp;
+	int	size;
 
-	if (ac <= 1)
-		return (0);
-	stack_b = NULL;
-	stack_a = parsing(av, ac);
-	if (!stack_a)
+	temp = *stack;
+	size = 0;
+	while (temp)
 	{
-		write(1, "Error\n", 6);
-		return (0);
+		temp = temp->next;
+		size++;
 	}
-	indexer(&stack_a);
-	sort_stack(&stack_a, &stack_b);
-	free_list(stack_a);
-	free_list(stack_b);
+	return (size);
 }

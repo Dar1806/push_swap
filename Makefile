@@ -6,7 +6,7 @@
 #    By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 13:38:53 by nmeunier          #+#    #+#              #
-#    Updated: 2026/03/02 17:28:44 by nmeunier         ###   ########.fr        #
+#    Updated: 2026/03/03 11:07:39 by nmeunier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,8 @@ SRCS = $(LIBFT) src/verif_nbr.c \
 				src/swap.c \
 				src/free.c \
 				src/push.c \
-				src/rotate.c
+				src/rotate.c \
+				src/utils.c
 
 CC = cc
 RM = rm -f
