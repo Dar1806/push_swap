@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:10:37 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 19:36:24 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/04 10:10:38 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,11 @@ int	is_sorted(t_stack *stack_a)
 	return (1);
 }
 
-int	stack_size(t_stack *stack)
-{
-	int	size;
-
-	size = 0;
-	while (stack)
-	{
-		size++;
-		stack = stack->next;
-	}
-	return (size);
-}
-
 void	sort_small(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 
-	size = stack_size(*stack_a);
+	size = get_size(stack_a);
 	if (size == 2)
 	{
 		if ((*stack_a)->content > (*stack_a)->next->content)
@@ -58,7 +45,7 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	if (is_sorted(*stack_a))
 		return ;
-	if (stack_size(*stack_a) <= 5)
+	if (get_size(stack_a) <= 5)
 		sort_small(stack_a, stack_b);
 	else
 		radix(stack_a, stack_b);

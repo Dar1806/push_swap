@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:04:48 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 20:04:32 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/04 10:11:11 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	get_size(t_stack **stack)
 {
-	t_stack *temp;
-	int	size;
+	t_stack	*temp;
+	int		size;
 
 	temp = *stack;
 	size = 0;
@@ -52,4 +52,34 @@ long	ft_atoi_long(const char *str)
 		i++;
 	}
 	return (sign * nbr);
+}
+
+int	has_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	check_args(int ac, char **av)
+{
+	int	i;
+
+	if (ac == 2)
+		return (0);
+	i = 1;
+	while (i < ac)
+	{
+		if (has_space(av[i]))
+			return (-1);
+		i++;
+	}
+	return (0);
 }

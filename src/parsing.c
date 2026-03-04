@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:04:39 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 19:27:11 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/04 10:10:11 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_stack	*create_one_arg(char *tab)
 t_stack	*parsing(char **tab, int ac)
 {
 	t_stack	*stack_a;
+
 	if (ac == 2)
 		stack_a = create_one_arg(tab[1]);
 	else
@@ -89,6 +90,5 @@ t_stack	*parsing(char **tab, int ac)
 		free_list(stack_a);
 		return (NULL);
 	}
-	
 	return (stack_a);
 }

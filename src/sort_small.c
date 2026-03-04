@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 16:54:47 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 19:16:57 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/04 09:59:04 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	chose_side(t_stack **stack_a, int index)
 	int		position;
 	t_stack	*tmp;
 
-	size = stack_size(*stack_a);
+	size = get_size(stack_a);
 	position = 0;
 	tmp = *stack_a;
 	while (tmp && tmp->index != index)

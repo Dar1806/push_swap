@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 19:04:12 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 20:12:49 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/04 10:10:28 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	indexer(t_stack **stack_a)
 		}
 		current = current->next;
 	}
-
 }
 
 void	radix(t_stack **stack_a, t_stack **stack_b)
@@ -57,7 +56,7 @@ void	radix(t_stack **stack_a, t_stack **stack_b)
 			else
 				ra(stack_a);
 		}
-		while(*stack_b)
+		while (*stack_b)
 			pa(stack_a, stack_b);
 	}
 }

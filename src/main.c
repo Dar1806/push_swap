@@ -6,7 +6,7 @@
 /*   By: nmeunier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:55:02 by nmeunier          #+#    #+#             */
-/*   Updated: 2026/03/03 19:13:41 by nmeunier         ###   ########.fr       */
+/*   Updated: 2026/03/04 10:05:12 by nmeunier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	main(int ac, char **av)
 	if (ac <= 1)
 		return (0);
 	stack_b = NULL;
+	if (check_args(ac, av) == -1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (0);
+	}
 	stack_a = parsing(av, ac);
 	if (!stack_a)
 	{
