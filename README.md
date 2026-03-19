@@ -52,11 +52,3 @@ make re     # Recompile from scratch
 ./push_swap 42 | wc -l
 # Count the number of operations
 ```
-
-### Verifying the result
-
-You can pipe the output into the official `checker` program (provided by 42) to verify correctness:
-
-```bash
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
-```
